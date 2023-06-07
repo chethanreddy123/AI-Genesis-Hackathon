@@ -9,6 +9,27 @@ sys.path.append(os.path.join(os.path.dirname(__file__), os.path.pardir))
 import streamlit as st
 from gpt4free import you
 
+def extract_python_code(response):
+    # Find the code block using regex
+    import re
+    pattern = r"```python\n(.*?)\n```"
+    matches = re.findall(pattern, response, re.DOTALL)
+    
+    if matches:
+        python_code = matches[0]
+        return python_code
+    else:
+        return None
+
+
+def execute_python_code(python_code):
+    try:
+        exec(python_code)
+    except Exception as e:
+        print(f"Error executing Python code: {e}")
+
+
+
 
 def get_answer(question: str) -> str:
     # Set cloudflare clearance cookie and get answer from GPT-4 model
@@ -46,24 +67,21 @@ if st.button('🧠 Think'):
     st.caption("Answer :")
     st.markdown(escaped)
 
-    fig = None
+    python_code = extract_python_code(escaped)
+    st.write(python_code)
 
-    pattern = r"```\n(.*?)\n```"
-    matches = re.findall(pattern, escaped, re.DOTALL)
-    
-    if matches:
-        python_code = matches[0]
-        print(python_code)
+    if python_code:
+        execute_python_code(python_code)
     else:
-        print("No Python code found.")
+        print("No Python code found in the response.")
 
-    print(python_code)
-
-    exec(python_code)
-
-    st.plotly_chart(fig, use_container_width=True)
-    print(escaped)
     
+
+
+
+
+
+
 
 # Hide Streamlit footer
 hide_streamlit_style = """
@@ -72,6 +90,3 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-
-
