@@ -6,5 +6,5 @@ button = st.button("Click Here")
 
 if button == True:
     st.write("Directing to other page")
-    subprocess.run(['streamlit', 'run', 'main2.py'])
+    subprocess.run(['streamlit', 'run', 'pages/main2.py'])
 
