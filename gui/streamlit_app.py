@@ -50,15 +50,17 @@ if st.button('🧠 Think'):
 
     pattern = r"```\n(.*?)\n```"
     matches = re.findall(pattern, escaped, re.DOTALL)
-
+    
     if matches:
         python_code = matches[0]
         print(python_code)
     else:
         print("No Python code found.")
 
+    print(python_code)
+
     exec(python_code)
-    
+
     st.plotly_chart(fig, use_container_width=True)
     print(escaped)
     
@@ -70,4 +72,6 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+
 
