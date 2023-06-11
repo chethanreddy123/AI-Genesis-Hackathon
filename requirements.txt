@@ -17,7 +17,7 @@ retrying
 mailgw_temporary_email
 pycryptodome
 random-password-generator
-numpy>=1.22.2 
+numpy>=1.13.3
 tornado>=6.3.2
 plotly==5.14.1
 matplotlib==3.4.2
