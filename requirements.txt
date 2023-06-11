@@ -17,6 +17,25 @@ retrying
 mailgw_temporary_email
 pycryptodome
 random-password-generator
-numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
-tornado>=6.3.2 # not directly required, pinned by Snyk to avoid a vulnerability
+numpy>=1.22.2 
+tornado>=6.3.2
 plotly==5.14.1
+matplotlib==3.4.2
+seaborn==0.11.1
+scikit-learn==0.24.2
+tensorflow==2.5.0
+keras==2.4.3
+statsmodels==0.12.2
+scipy==1.7.0
+plotly==5.1.0
+jupyterlab==3.1.10
+torch==1.9.0
+torchvision==0.10.0
+fastai==2.5.2
+xgboost==1.4.2
+lightgbm==3.2.1
+catboost==0.26.1
+nltk==3.6.2
+gensim==4.0.1
+pytorch-lightning==1.4.8
+streamlit==0.85.1
