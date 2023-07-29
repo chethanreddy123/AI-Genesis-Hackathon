@@ -2,7 +2,6 @@
 import streamlit as st
 import pandas as pd
 import base64
-from gpt4free import you
 import os
 import sys
 import numpy as np
@@ -12,6 +11,10 @@ import json
 import pyperclip
 import streamlit as st
 import base64
+from models import generate_text_with_palm
+
+
+
 
 
 if "Graphical_Results" not in st.session_state:
@@ -86,7 +89,7 @@ def getSuggestedQuestions(dataFrame):
     {sampleFrame}
     '''
 
-    answer = get_answer(prompt)
+    answer = generate_text_with_palm(prompt)
     escaped = answer.encode('utf-8').decode('unicode-escape')
     data_dict = json.loads(escaped)
     displayRecommendations(data_dict)
@@ -239,8 +242,9 @@ def main():
                         7. Keep the code as short as possible.
                         8. For any query max try to use Plotly, NumPy, Keras, Pandas, PyTorch, SciPy, Scikit-Learn, TensorFlow, Matplotlib, Seaborn 
                         '''
-                        answer = get_answer(prompt)
+                        answer = generate_text_with_palm(prompt)
                         escaped = answer.encode('utf-8').decode('unicode-escape')
+                        print(escaped)
                         print(escaped)
                         if 'python' in escaped:
                             pattern = r'```python(.+?)```'
